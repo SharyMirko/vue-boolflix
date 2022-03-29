@@ -1,28 +1,61 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderBoolflix @searchStr="searchRequest($event)" />
+    <MainBoolfix :arrMovie="resultsMovie" :arrSeries="resultsSeries" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+import HeaderBoolflix from './components/HeaderBoolflix.vue'
+import MainBoolfix from './components/MainBoolfix.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HeaderBoolflix,
+    MainBoolfix
+},
+data () {
+  return {
+    resultsMovie: [],
+    resultsSeries: []
   }
+},
+methods: {
+  searchRequest(str){
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=1814a5181699a3f32f15c63dc0665bd9&language=it-IT&query=' + str)
+    .then(res => {
+      this.resultsMovie = res.data.results
+      this.resultsMovie.forEach(item => {
+        console.log(item.vote_average)
+        if (Math.floor(item.vote_average) <= 2) {
+          return item.vote_average = 1
+        } else {
+          item.vote_average = Math.floor(item.vote_average / 2)
+        }
+      })
+    })
+
+    axios.get('https://api.themoviedb.org/3/search/tv?api_key=1814a5181699a3f32f15c63dc0665bd9&language=it-IT&query=' + str).then(resp => {
+      this.resultsSeries = resp.data.results
+    })
+  }
+}
 }
 </script>
 
 <style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #141414;
+  color: #fff;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
