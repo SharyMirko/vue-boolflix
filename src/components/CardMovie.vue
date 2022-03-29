@@ -1,6 +1,6 @@
 <template>
-<div class="card-container"><div class="img"><img :src="img + item.poster_path" alt=""></div>
-<div class="content"><p>Titolo:</p> <span>{{item.title}}</span> <p>Titolo originale: </p> <span>{{item.original_title}}</span><p>Lingua: <lang-flag :iso="item.original_language" :squared="false" /></p>
+<div class="card-container"><div class="img"><img :src="item.poster_path != null ? img + item.poster_path : 'https://picsum.photos/490'" alt=""></div>
+<div class="content"><p>Titolo:</p> <span v-if="item.title != item.original_title">{{item.title}}</span> <p>Titolo originale: </p> <span>{{item.original_title}}</span><p>Lingua: <lang-flag :iso="item.original_language" :squared="false" /></p>
 <p>Vote: <span v-for="star in item.vote_average" :key="star"><img src="../../public/star-fill.svg" alt=""></span> <span v-for="starEmpty in 5 - item.vote_average" :key="starEmpty"><img src="../../public/star.svg" alt=""></span> </p>
 <p>Trama:</p> <span v-if="item.overview != ''">{{ item.overview.substr(0, 150) }}...</span>
 </div>
