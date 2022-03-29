@@ -1,5 +1,6 @@
 <template>
 <div class="main-container">
+    <h1>Movies</h1>
 <CardMovie v-for="item in arrMovie" :key="item.id" :item="item" />
 </div>  
 </template>
@@ -22,5 +23,9 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    h1 {
+        display: block;
+        width: 100%;
+    }
 }
 </style>

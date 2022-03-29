@@ -1,10 +1,11 @@
 <template>
 <div class="card-container"><div class="img"><img :src="img + item.poster_path" alt=""></div>
-<div class="content">{{item.title}}<br>{{item.original_title}}<br>{{item.original_language}}<br>{{item.vote_average}}</div>
+<div class="content">{{item.title}}<br>{{item.original_title}}<br><lang-flag :iso="item.original_language" :squared="false" /><br>{{item.vote_average}}</div>
 </div>  
 </template>
 
 <script>
+import LangFlag from 'vue-lang-code-flags';
 export default {
 name: 'CardMovie.vue',
 data () {
@@ -14,6 +15,9 @@ data () {
 },
 props: {
    item: Object 
+},
+components: {
+    LangFlag
 }
 }
 </script>
