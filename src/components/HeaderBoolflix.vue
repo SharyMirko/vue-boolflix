@@ -1,7 +1,7 @@
 <template>
 <div class="main-header">
 <div class="logo"><h1>Boolflix</h1></div>
-<input type="text" @keyup="$emit('searchStr', searchStr)" v-model="searchStr" placeholder="cerca " name="search" id="search"> 
+<input type="text" @keyup="$emit('searchStr', searchStr); caunt++; $emit('caunt', caunt)" v-model="searchStr" placeholder="cerca " name="search" id="search"> 
 </div>  
 </template>
 
@@ -10,7 +10,8 @@ export default {
 name: 'HeaderBoolflix',
 data () {
     return {
-        searchStr: null
+        searchStr: null,
+        caunt: 0
     }
 }
 }

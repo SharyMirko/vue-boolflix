@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderBoolflix @searchStr="searchRequest($event)" />
-    <MainBoolfix :arrMovie="resultsMovie" :arrSeries="resultsSeries" />
+    <HeaderBoolflix @caunt="caunt = $event" @searchStr="searchRequest($event)" />
+    <MainBoolfix :arrMovie="resultsMovie" :caunt="caunt" :arrSeries="resultsSeries" />
   </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
 data () {
   return {
     resultsMovie: [],
-    resultsSeries: []
+    resultsSeries: [],
+    caunt: 0
   }
 },
 methods: {

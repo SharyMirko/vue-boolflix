@@ -4,6 +4,7 @@
 <CardMovie v-for="item in arrMovie" :key="item.id" :item="item" />
 <h1 v-if="arrMovie.length != 0">Series</h1>
 <CardSeries v-for="item in arrSeries" :key="item.id" :item="item" />
+<h1 v-if="arrMovie.length == 0 && caunt > 0">Non trovo nulla nei film o serie :(</h1>
 </div>  
 </template>
 
@@ -14,7 +15,8 @@ export default {
     name: "MainBoolflix",
     props: {
         arrMovie: Array,
-        arrSeries: Array
+        arrSeries: Array,
+        caunt: Number
     },
     components: {
     CardMovie,
